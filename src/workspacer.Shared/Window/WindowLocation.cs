@@ -10,11 +10,15 @@ namespace workspacer
     {
         public WindowLocation(int x, int y, int width, int height, WindowState state)
         {
-            X = x;
-            Y = y;
-            Width = width;
-            Height = height;
+            // hacky implementation of "gaps" between windows.
+            // issue is with gaps between windows are double the expected size.
+            int gapSize = 5;
+            X = x + gapSize;
+            Y = y + gapSize;
+            Width = width - gapSize * 2;
+            Height = height - gapSize * 2;
             State = state;
+  
         }
 
         public int X { get; private set;}
@@ -32,5 +36,6 @@ namespace workspacer
         {
             return $"{State} - {X}:{Y}/{Width}:{Height}";
         }
+
     }
 }
